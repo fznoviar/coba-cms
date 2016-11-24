@@ -19,15 +19,19 @@
         <tr>
             <td>Nama {{ $number }}</td>
             <td>Slug {{ $number }}</td>
-            <td class="center">{{ $number }}</td>
+            <td class="text-center">
+                <span class="label label-success label-circle">
+                    <i class="fa fa-check"></i>
+                </span>
+            </td>
             <td>Alamat {{ $number }}</td>
             <td>Contoh deskripsi panjang</td>
             <td>
                 <a href="#" class="btn btn-success btn-xs">
-                    <i class="fa fa-edit"></i> Success
+                    <i class="fa fa-edit"></i> Edit
                 </a>
                 <a href="#" class="btn btn-danger btn-xs">
-                    <i class="fa fa-trash"></i> Success
+                    <i class="fa fa-trash"></i> Delete
                 </a>
             </td>
         </tr>
