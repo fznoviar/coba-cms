@@ -1,0 +1,1 @@
+@extends('admins._layouts.base')
