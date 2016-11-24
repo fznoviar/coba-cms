@@ -14,3 +14,5 @@
 
 <!-- Custom Theme JavaScript -->
 <script src="{{ asset('assets/admin/js/sb-admin-2.js') }}"></script>
+
+@yield('page-script')
