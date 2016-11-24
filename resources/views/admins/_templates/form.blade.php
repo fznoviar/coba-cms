@@ -1,7 +1,10 @@
 @extends('admins._layouts.base_form')
 
 @section('page-title')
-    <h1 class="page-header">{{ $page_name }}</h1>
+    <div class="page-header">
+        <h1>{{ $page_name }}</h1>
+        <a href="#" class="btn btn-default">Back to Index</a>
+    </div>
 @endsection
 
 @section('page-sub-title')
