@@ -140,6 +140,8 @@ return [
         /*
          * Vendor Service Providers...
          */
+        Barryvdh\Debugbar\ServiceProvider::class,
+        Barryvdh\Elfinder\ElfinderServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
 
         /*
@@ -200,6 +202,7 @@ return [
         'View'      => Illuminate\Support\Facades\View::class,
 
         // Vendor alias
+        'Debugbar'  => Barryvdh\Debugbar\Facade::class,
         'Form'      => Collective\Html\FormFacade::class,
         'Html'      => Collective\Html\HtmlFacade::class,
 

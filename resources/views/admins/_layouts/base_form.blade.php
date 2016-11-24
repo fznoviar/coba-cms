@@ -21,6 +21,8 @@
 
                                 {!! Form::cmsTextarea('description', 'Description') !!}
 
+                                {!! Form::cmsWysiwyg('content', 'Content') !!}
+
                                 {!! Form::cmsStatic('Static Control', 'email@example.com') !!}
 
                                 {!! Form::cmsSelect('select', 'Select With Placeholder', ['Select 1', 'Select 2'], 'Select option') !!}
@@ -62,4 +64,12 @@
 @endsection
 
 @section('page-script')
+    <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+    <script src="{{ asset('assets/admin/script/tinymce.js') }}"></script>
+
+    <script>
+    jQuery(document).ready(function() {
+        TinyMCE.init(); 
+    });
+    </script>
 @endsection

@@ -168,8 +168,8 @@ Form::macro('cmsModel', function ($model, array $attributes = []) {
 
     if (isset($attributes['prefix'])) {
         $attributes['route'] = $model->exists
-            ? [suitRouteName($attributes['prefix'] . '.update'), $model]
-            : suitRouteName($attributes['prefix'] . '.store');
+            ? [cmsRouteName($attributes['prefix'] . '.update'), $model]
+            : cmsRouteName($attributes['prefix'] . '.store');
         unset($attributes['prefix']);
     }
 
@@ -178,4 +178,12 @@ Form::macro('cmsModel', function ($model, array $attributes = []) {
     }
 
     return Form::model($model, $attributes);
+});
+
+Form::macro('cmsWysiwyg', function ($name, $label, $value = null, $type = 'basic', $attributes = []) {
+    addStringToArray('class', "editor", $attributes);
+    if (!isset($attributes['rows'])) {
+        $attributes['rows'] = 15;
+    }
+    return Form::cmsTextarea($name, $label, $value, $attributes);
 });
