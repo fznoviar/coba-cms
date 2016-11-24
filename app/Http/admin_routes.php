@@ -21,8 +21,11 @@
     //     ]
     // );
 
-    \Route::get('/', ['as' => cmsRouteName('index'),
-                      'uses' => 'DashboardController@index']);
+    Route::get('/', [
+        'as' => cmsRouteName('index'),
+        'uses' => 'DashboardController@index'
+    ]);
+    Route::resource('template', 'TemplateController', ['only' => ['index', 'create', 'edit']]);
     // \Route::match(['GET', 'POST'], '/change-password', ['as' => cmsRouteName('password'),
                                      // 'uses' => 'SessionController@changePassword']);
     // \Route::get('/logout', ['as' => cmsRouteName('logout'),

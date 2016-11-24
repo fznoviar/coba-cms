@@ -14,9 +14,12 @@
                 </div>
                 <!-- /.panel-heading -->
                 <div class="panel-body">
-                    <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+                    <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-index">
                         <thead>
-                            @yield('table-header')
+                            <tr>
+                                @yield('table-header')
+                                <th>Action</th>
+                            </tr>
                         </thead>
                         <tbody>
                             @yield('table-content')
@@ -37,4 +40,12 @@
     <script src="{{ asset('assets/admin/vendor/datatables/js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('assets/admin/vendor/datatables-plugins/dataTables.bootstrap.min.js') }}"></script>
     <script src="{{ asset('assets/admin/vendor/datatables-responsive/dataTables.responsive.js') }}"></script>
+
+    <script>
+    $(document).ready(function() {
+        $('#dataTables-index').DataTable({
+            responsive: true
+        });
+    });
+    </script>
 @endsection
