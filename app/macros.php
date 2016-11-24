@@ -187,3 +187,27 @@ Form::macro('cmsWysiwyg', function ($name, $label, $value = null, $type = 'basic
     }
     return Form::cmsTextarea($name, $label, $value, $attributes);
 });
+
+Form::macro('cmsFileBrowser', function ($name, $label, $value = null, $attributes = []) {
+    $key = generateId($name);
+    addStringToArray('id', $key, $attributes, true);
+    addStringToArray('class', 'form-control', $attributes);
+    addStringToArray('placeholder', "Browse from server or Enter Url.", $attributes, true);
+
+    $inputText = Form::text($name, $value, $attributes);
+    $input = "
+        <div class=\"input-group\">
+            <span class=\"input-group-btn popup_selector\" data-inputid=\"$key\" style=\"cursor:pointer;\">
+                <button class=\"btn default\" type=\"button\"><i class=\"fa fa-folder-open-o\"></i></button>
+            </span>
+            $inputText
+        </div>
+    ";
+    $value = Form::getValueAttribute($name, $value);
+
+    if (!empty($value)) {
+        $url = asset($value);
+        $attributes['thumbnail'] = $url;
+    }
+    return Form::cmsField($name, $label, $input, '', $attributes);
+});

@@ -33,14 +33,7 @@
 
                                 {!! Form::cmsCheckboxes('checkbox', 'Checkboxes', [11 => 'Select 1', 12 => 'Select 2']) !!}
 
-                                <div class="form-group">
-                                    <div class="row">
-                                        <label class="col-md-2">File Input</label>
-                                        <div class="col-md-10">
-                                            <input type="file">
-                                        </div>
-                                    </div>
-                                </div>
+                                {!! Form::cmsFileBrowser('image', 'Image') !!}
 
                                 <div class="action-form">
                                     <div class="pull-right">

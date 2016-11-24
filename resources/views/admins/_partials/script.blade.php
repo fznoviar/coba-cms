@@ -1,6 +1,9 @@
 <!-- jQuery -->
 <script src="{{ asset('assets/admin/vendor/jquery/jquery.min.js') }}"></script>
 
+<!-- Colorbox Javascript -->
+<script src="{{ asset('assets/admin/plugins/colorbox/jquery.colorbox.js') }}"></script>
+
 <!-- Bootstrap Core JavaScript -->
 <script src="{{ asset('assets/admin/vendor/bootstrap/js/bootstrap.min.js') }}"></script>
 
@@ -14,5 +17,8 @@
 
 <!-- Custom Theme JavaScript -->
 <script src="{{ asset('assets/admin/js/sb-admin-2.js') }}"></script>
+
+<script src="{{ asset('packages/barryvdh/elfinder/js/standalonepopup.js') }}"></script>
+
 
 @yield('page-script')

@@ -9,8 +9,8 @@ $(document).on('click','.popup_selector',function (event) {
         href: triggerUrl,
         fastIframe: true,
         iframe: true,
-        width: '70%',
-        height: '50%'
+        width: '80%',
+        height: '75%'
     });
 
 });

@@ -21,6 +21,10 @@
 <!-- Custom Fonts -->
 <link href="{{ asset('assets/admin/vendor/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
 
+<!-- Colorbox CSS -->
+<link rel="stylesheet" href="{{ asset('assets/admin/plugins/colorbox/theme/colorbox.css') }}">
+
+
 @yield('page-css')
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
