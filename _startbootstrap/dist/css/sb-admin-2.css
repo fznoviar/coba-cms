@@ -30,6 +30,9 @@
   display: inline-block;
   margin: 0;
 }
+.label-circle {
+  border-radius: 50%;
+}
 body {
   background-color: #f8f8f8;
 }

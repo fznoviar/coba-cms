@@ -168,3 +168,13 @@ if (!function_exists('generateId')) {
         return $key;
     }
 }
+
+if (!function_exists('booleanViewForIndex')) {
+    function isSuperuserForIndex($value)
+    {
+        if ($value) {
+            return "<span class=\"label label-success label-circle\"><i class=\"fa fa-check\"></i></span>";
+        }
+        return "<span class=\"label label-danger label-circle\"><i class=\"fa fa-times\"></i></span>";
+    }
+}
