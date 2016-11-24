@@ -2,12 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use App\Traits\AdminControllerTrait;
-
-class TemplateController extends Controller
+class TemplateController extends BaseController
 {
-    use AdminControllerTrait;
+    protected $viewPrefix = '_templates';
 
     /**
      * Create a new Dashboard Controller
@@ -16,9 +13,7 @@ class TemplateController extends Controller
      */
     public function __construct()
     {
-        view()->share([
-            'page_name' => $this->getPageNameFromClass()
-        ]);
+        parent::__construct();
     }
 
     public function index()
@@ -38,10 +33,5 @@ class TemplateController extends Controller
         return view($this->getView('form'), [
             'flg' => true
         ]);
-    }
-
-    protected function getView($name)
-    {
-        return cmsViewName('_templates.' . $name);
     }
 }
