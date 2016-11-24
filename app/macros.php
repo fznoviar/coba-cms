@@ -1,10 +1,15 @@
 <?php
 
 Form::macro('cmsField', function ($for, $label, $input, $classes = '', array $option = []) {
+    $errorName = str_replace('[', '.', $for);
+    $errorName = str_replace(']', '', $errorName);
+    $error = Session::has('errors') ? Session::get('errors')->first($errorName) : null;
+    $isError = !empty($error);
     if (isset($option['info'])) {
         $info = $option['info'];
     }
     $infoValue = isset($info) ? '<span class="help-block">' . $info . '</span>' : '';
+    $errorValue = $isError ? '<span class="text-danger">' . $error . '</span>' : '';
 
     $labelId = generateId($for);
     $labelValue = ($label !== null) ? $label : '';
@@ -16,6 +21,7 @@ Form::macro('cmsField', function ($for, $label, $input, $classes = '', array $op
                 <div class=\"col-md-10 $classes \">
                   $input
                   $infoValue
+                  $errorValue
                 </div>
             </div>
         </div>";
@@ -41,6 +47,14 @@ Form::macro('cmsText', function ($name, $label, $value = null, $attributes = [])
     addStringToArray('placeholder', "Enter $label", $attributes, true);
 
     return Form::cmsField($name, $label, Form::text($name, $value, $attributes), '', $attributes);
+});
+
+Form::macro('cmsEmail', function ($name, $label, $value = null, $attributes = []) {
+    addStringToArray('id', generateID($name), $attributes, true);
+    addStringToArray('class', 'form-control', $attributes);
+    addStringToArray('placeholder', "Enter $label", $attributes, true);
+
+    return Form::cmsField($name, $label, Form::email($name, $value, $attributes), '', $attributes);
 });
 
 Form::macro('cmsNumber', function ($name, $label, $value = null, $attributes = []) {
@@ -130,7 +144,8 @@ Form::macro('cmsCheckboxes', function ($name, $label, $list = [], $attributes = 
         $input = "";
         $count = 1;
         foreach ($list as $value => $valueName) {
-            $checkbox = Form::checkbox($name, $value, false, ['id' => $name . $count]);
+            $checked = ($value == Form::getValueAttribute($name)) ? true : false;
+            $checkbox = Form::checkbox($name, $value, $checked, ['id' => $name . $count]);
             $input .= "
                 <div class=\"checkbox\">
                     <label>
@@ -163,18 +178,22 @@ Form::macro('cmsPreview', function ($value = null, $name = null, $attributess = 
     ";
 });
 
+Form::macro('cmsOpen', function (array $attributes = []) {
+    addStringToArray('class', 'form', $attributes);
+
+    return Form::open($attributes);
+});
+
 Form::macro('cmsModel', function ($model, array $attributes = []) {
-    addStringToArray('class', 'form-horizontal', $attributes);
+    addStringToArray('class', 'form', $attributes);
 
     if (isset($attributes['prefix'])) {
-        $attributes['route'] = $model->exists
-            ? [cmsRouteName($attributes['prefix'] . '.update'), $model]
-            : cmsRouteName($attributes['prefix'] . '.store');
+        $attributes['route'] = [$attributes['prefix'] . '.update', $model];
         unset($attributes['prefix']);
     }
 
     if (!isset($attributes['method'])) {
-        $attributes['method'] = $model->exists ? 'PUT' : 'POST';
+        $attributes['method'] ='PUT';
     }
 
     return Form::model($model, $attributes);

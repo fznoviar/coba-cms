@@ -7,6 +7,9 @@
             <li>
                 <a href="{{ route('backend.index') }}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
             </li>
+            <li>
+                <a href="{{ route('backend.users.index') }}"><i class="fa fa-dashboard fa-fw"></i> User</a>
+            </li>
             <li class="sidebar-list">
                 <span class="sidebar-list-label">Guide</span>
             </li>

@@ -32,7 +32,7 @@
                                             // 'uses' => 'SessionController@logout']);
 
     // \Route::resource('pages', 'PageController', ['except' => 'show']);
-    // \Route::resource('users', 'UserController', ['except' => 'show']);
+    \Route::resource('users', 'UserController', ['except' => 'show']);
 
     //Template Route
     // \Route::get(

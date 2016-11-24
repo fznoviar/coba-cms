@@ -4,8 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 class TemplateController extends BaseController
 {
-    protected $viewPrefix = '_templates';
-
     /**
      * Create a new Dashboard Controller
      *

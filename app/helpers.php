@@ -170,7 +170,7 @@ if (!function_exists('generateId')) {
 }
 
 if (!function_exists('booleanViewForIndex')) {
-    function isSuperuserForIndex($value)
+    function booleanViewForIndex($value)
     {
         if ($value) {
             return "<span class=\"label label-success label-circle\"><i class=\"fa fa-check\"></i></span>";

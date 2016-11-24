@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
@@ -53,4 +54,31 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         'last_login',
         'date_joined'
     ];
+
+    protected $appends = [
+        'name'
+    ];
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::created(function ($user) {
+            $user->update([
+                'date_joined' => Carbon::now()
+            ]);
+        });
+    }
+
+    public function getNameAttribute()
+    {
+        return $this->first_name . ' ' . $this->last_name;
+    }
+
+    public function setPasswordAttribute($value)
+    {
+        if (!empty($value) || is_numeric($value)) {
+            $this->attributes['password'] = \Hash::make($value);
+        }
+    }
 }
