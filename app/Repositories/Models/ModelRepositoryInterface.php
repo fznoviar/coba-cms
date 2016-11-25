@@ -1,7 +1,7 @@
 <?php
 namespace App\Repositories\Models;
 
-interface RepositoryInterface
+interface ModelRepositoryInterface
 {
  
     public function all($columns = ['*']);

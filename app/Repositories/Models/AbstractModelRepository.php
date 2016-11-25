@@ -4,7 +4,7 @@ namespace App\Repositories\Models;
 use App;
 use Illuminate\Database\Eloquent\Model;
 
-abstract class AbstractModelRepository
+abstract class AbstractModelRepository implements ModelRepositoryInterface
 {
     protected $model;
 
@@ -14,6 +14,18 @@ abstract class AbstractModelRepository
     }
 
     abstract function model();
+
+    abstract function getBaseRules();
+
+    protected function getCreateRules($rules)
+    {
+        return $rules;
+    }
+    
+    protected function getUpdateRules($rules)
+    {
+        return $rules;
+    }
 
     public function all($columns = ['*'])
     {
@@ -32,6 +44,7 @@ abstract class AbstractModelRepository
  
     public function update(array $data, $id, $attribute = 'id')
     {
+        $data = $this->filterData($data);
         return $this->model->where($attribute, '=', $id)->update($data);
     }
  
@@ -42,7 +55,7 @@ abstract class AbstractModelRepository
  
     public function find($id, $columns = ['*'])
     {
-        return $this->model->findOrFail($id, $columns);
+        return $this->model->find($id, $columns);
     }
  
     public function findBy($field, $value, $columns = ['*'])
@@ -53,6 +66,13 @@ abstract class AbstractModelRepository
     public function findByMany($field, $value, $columns = ['*'])
     {
         return $this->model->where($field, '=', $value)->get($columns);
+    }
+
+    protected function filterData($data)
+    {
+        $fillable = array_flip($this->model->getFillable());
+
+        return array_intersect_key($data, $fillable);
     }
 
     /**
